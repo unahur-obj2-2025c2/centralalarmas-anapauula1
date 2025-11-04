@@ -18,7 +18,7 @@ public class CentralMonitoreo implements ISistema{
     public void emitirAlerta(String Tipo,Integer nivel){
         Alerta alerta = new Alerta(Tipo, nivel); 
 
-        if(alerta.getNivel() >= 1 && alerta.getNivel() <=10){
+        if(alerta.getNivel() >= 1 || alerta.getNivel() <=10){
             registro.put(alerta, entidadesRegistradas.size());
             notificarALasEntidades(alerta);
         }

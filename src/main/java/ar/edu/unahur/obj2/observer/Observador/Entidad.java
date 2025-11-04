@@ -36,8 +36,14 @@ public class Entidad implements IEntidad{
         this.comportamiento = comportamiento;
     }
     @Override
-    public Integer riesgo(){return comportamiento.riesgo(this);}
-
+    public Integer riesgo(){
+        if(alertasRecibidas.isEmpty()){
+            return 0;
+        }
+        else{
+            return comportamiento.doRiesgo(this);
+        }
+    }
     @Override
     public Alerta ultimaAlerta() {
         return alertasRecibidas.getLast();
@@ -52,5 +58,12 @@ public class Entidad implements IEntidad{
     @Override
     public Integer nivelesDeAlertasCriticas() {
         return alertasRecibidas.stream().filter(a -> a.esCritica()).mapToInt(a -> a.getNivel()).sum();
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    @Override
+    public List<Alerta> getAlertasRecibidas() {
+        return alertasRecibidas;
     }
 }
