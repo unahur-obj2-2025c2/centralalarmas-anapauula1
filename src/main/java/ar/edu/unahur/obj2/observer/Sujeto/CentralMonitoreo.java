@@ -10,7 +10,6 @@ import ar.edu.unahur.obj2.observer.Exepcion.NivelAlertaIncorrecto;
 import ar.edu.unahur.obj2.observer.Observador.IEntidad;
 
 public class CentralMonitoreo implements ISistema{
-    List<Alerta> registroAlerta = new ArrayList<>();
     List<IEntidad> entidadesRegistradas = new ArrayList<>();
     private Map<Alerta, Integer> registro = new HashMap<>();
 
@@ -18,7 +17,7 @@ public class CentralMonitoreo implements ISistema{
     public void emitirAlerta(String Tipo,Integer nivel){
         Alerta alerta = new Alerta(Tipo, nivel); 
 
-        if(alerta.getNivel() >= 1 || alerta.getNivel() <=10){
+        if(alerta.getNivel() >= 1 && alerta.getNivel() <=10){
             registro.put(alerta, entidadesRegistradas.size());
             notificarALasEntidades(alerta);
         }
@@ -37,6 +36,7 @@ public class CentralMonitoreo implements ISistema{
     public void registrarEntidad(IEntidad unaEntidad) {
         entidadesRegistradas.add(unaEntidad);
     }
+    @Override
     public Integer cantidadDeAlertas(){
         return registro.values().stream().mapToInt(Integer::intValue).sum();
     }

@@ -32,6 +32,7 @@ public class Entidad implements IEntidad{
     public ComportamientoRiesgo getComportamiento() {
         return comportamiento;
     }
+    @Override
     public void setComportamiento(ComportamientoRiesgo comportamiento) {
         this.comportamiento = comportamiento;
     }

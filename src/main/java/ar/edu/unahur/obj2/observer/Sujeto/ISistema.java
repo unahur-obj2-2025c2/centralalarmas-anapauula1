@@ -7,4 +7,5 @@ public interface ISistema {
     void registrarEntidad(IEntidad unaEntidad);
     void eliminarEntidad(IEntidad unaEntidad);
     void emitirAlerta(String Tipo,Integer nivel);
+    Integer cantidadDeAlertas();
 }
